@@ -165,8 +165,8 @@ def _use_mock_db(reason):
     except ImportError:
         print('  [X] montydb not installed. Run: pip install montydb')
         raise
-
+# Expose global app and socketio for WSGI servers like Gunicorn
+app, socketio = create_app()
 
 if __name__ == '__main__':
-    app, socketio = create_app()
     socketio.run(app, host='0.0.0.0', port=5000, debug=True)
